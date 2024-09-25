@@ -15,8 +15,8 @@
 
 <body>
     <div class="container mt-5 text-center">
-        <h1>Your Final Score</h1>
-        <h2>Clicks: <span id="finalScore">0</span></h2>
+            <h1>Your Final Score</h1>
+            <h2>Clicks: <span id="finalScore">0</span></h2>
 
         <!-- Play Again Link -->
         <a href="index.html" class="btn btn-primary mt-4" style="font-size: 1.5rem;">
@@ -25,12 +25,7 @@
     </div>
 
     <script>
-        function getQueryParam(param) {
-            const urlParams = new URLSearchParams(window.location.search);
-            return urlParams.get(param);
-        }
-
-        const score = getQueryParam('score');
+        const score = new URLSearchParams(window.location.search).get('score');
         document.getElementById("finalScore").textContent = score;
     </script>
 </body>

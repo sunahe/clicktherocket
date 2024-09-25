@@ -64,29 +64,21 @@
         let countdownValue = 2;
         let countdownStarted = false;
 
-        document.getElementById("company").textContent = 'Omicron';
-
-        const clickCounterElement = document.getElementById("clickCounter");
-        const scoreElement = document.getElementById("score");
-        const countdownElement = document.getElementById("countdown");
-        const clickableImage = document.getElementById("clickableImage");
-
         // Start countdown and increment counter on image click
-        clickableImage.addEventListener("click", function () {
+        document.getElementById("clickableImage").addEventListener("click", function () {
             // Start countdown on first click
             if (!countdownStarted) {
                 countdownStarted = true;
                 startCountdown();
             }
-
-            // Increment the click counter
             counter++;
-            clickCounterElement.textContent = counter;
+            document.getElementById("clickCounter").textContent = counter;
         });
 
         function startCountdown() {
+            const countdownElement = document.getElementById("countdown");
             countdownElement.textContent = countdownValue;
-            scoreElement.classList.remove("invisible");
+            document.getElementById("score").classList.remove("invisible");
 
             const interval = setInterval(function () {
                 countdownValue--;
@@ -99,13 +91,10 @@
             }, 1000); // Decrease the countdown every second
         }
 
-        // Function to set a cookie
         function setCookie(name, value, days) {
             const expires = new Date(Date.now() + days * 864e5).toUTCString();
             document.cookie = `${name}=${encodeURIComponent(value)}; expires=${expires}; path=/'`;
         }
-
-        // Function to get a cookie by name
         function getCookie(name) {
             return document.cookie.split('; ').reduce((r, v) => {
                 const parts = v.split('=');
@@ -113,18 +102,16 @@
             }, '');
         }
 
-        const urlParams = new URLSearchParams(window.location.search);
-        const companyName = urlParams.get('c');
+        let companyName = new URLSearchParams(window.location.search).get('c');
         if (companyName) {
             setCookie('companyName', companyName, 7);
-
             const cleanUrl = window.location.origin + window.location.pathname;
-            window.location.href = cleanUrl;
+            window.location.replace(cleanUrl);
         } else {
-            const storedCompanyName = getCookie('companyName');
-            if (storedCompanyName) {
-                document.getElementById("company").textContent = storedCompanyName;
-            }
+            companyName = getCookie('companyName');
+        }
+        if (companyName) {
+            document.getElementById("company").textContent = storedCompanyName;
         }
     </script>
 </body>

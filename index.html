@@ -93,17 +93,18 @@
             }, '');
         }
 
-        setCookie('companyNameTEST', 'Omega', 7);
         let companyName = new URLSearchParams(window.location.search).get('c');
         if (companyName) {
             setCookie('companyName', companyName, 7);
-            const cleanUrl = window.location.origin + window.location.pathname;
-            window.location.replace(cleanUrl);
+            if (window.history.replaceState) {
+                const cleanUrl = window.location.origin + window.location.pathname;
+                window.history.replaceState({}, null, cleanUrl);
+            }
         } else {
             companyName = getCookie('companyName');
         }
         if (companyName) {
-            document.getElementById("company").textContent = storedCompanyName;
+            document.getElementById("company").textContent = companyName;
         }
     </script>
 </body>

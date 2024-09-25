@@ -16,23 +16,17 @@
         #clickableImage {
             transition: transform 0.2s ease, box-shadow 0.2s ease;
             box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.3);
-            /* Initial shadow for hovering effect */
             transform: translateY(0);
-            /* Default position */
         }
 
         #clickableImage:hover {
             box-shadow: 0px 15px 25px rgba(0, 0, 0, 0.4);
-            /* Larger shadow on hover */
             transform: translateY(-5px);
-            /* Slight lift on hover */
         }
 
         #clickableImage:active {
             box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.2);
-            /* Reduce shadow on click */
             transform: translateY(3px);
-            /* Press down effect */
         }
     </style>
 </head>
@@ -42,7 +36,6 @@
         <h1 class="text-center">Click the Rocket!</h1>
         <h2 class="text-center" id="countdown">&nbsp;</h2>
         <h2 class="text-center invisible" id="score">Your score: <span id="clickCounter">0</span></h2>
-        <!-- <p class="text-center">This is a simple website made using HTML, Bootstrap, and JavaScript.</p> -->
 
         <div class="d-flex justify-content-center mt-5">
             <img id="clickableImage" src="https://via.placeholder.com/300" class="img-fluid" alt="Click me"
@@ -58,7 +51,6 @@
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
         crossorigin="anonymous"></script>
 
-    <!-- Embedded JavaScript -->
     <script>
         let counter = 0;
         let countdownValue = 2;
@@ -66,7 +58,6 @@
 
         // Start countdown and increment counter on image click
         document.getElementById("clickableImage").addEventListener("click", function () {
-            // Start countdown on first click
             if (!countdownStarted) {
                 countdownStarted = true;
                 startCountdown();
@@ -102,6 +93,7 @@
             }, '');
         }
 
+        setCookie('companyNameTEST', 'Omega', 7);
         let companyName = new URLSearchParams(window.location.search).get('c');
         if (companyName) {
             setCookie('companyName', companyName, 7);

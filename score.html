@@ -18,6 +18,10 @@
             -webkit-user-select: none;
             -moz-user-select: none;
         }
+
+        a[disabled] {
+            pointer-events: none;
+        }
     </style>
 </head>
 
@@ -25,7 +29,7 @@
     <div class="container mt-5 text-center">
         <h1>Your Final Score</h1>
         <h2>Clicks: <span id="finalScore">0</span></h2>
-        <a href="index.html" class="btn btn-primary mt-4" style="font-size: 1.5rem;">
+        <a href="index.html" id="playAgainLink" class="btn btn-outline-primary mt-4" role="button" disabled>
             Play Again
         </a>
     </div>
@@ -33,6 +37,10 @@
     <script>
         const score = new URLSearchParams(window.location.search).get('score');
         document.getElementById("finalScore").textContent = score;
+
+        setTimeout(() => {
+            document.getElementById('playAgainLink').removeAttribute('disabled');
+        }, 500);
     </script>
 </body>
 

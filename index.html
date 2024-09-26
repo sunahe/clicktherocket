@@ -52,13 +52,14 @@
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
         crossorigin="anonymous"></script>
 
+    <script src="script.js"></script>
     <script>
         let counter = 0;
         let countdownValue = 15;
         let countdownStarted = false;
 
-        // Start countdown and increment counter on image click
-        document.getElementById("clickableImage").addEventListener("click", function () {
+        const imageElement = document.getElementById("clickableImage");
+        imageElement.addEventListener("click", function () {
             if (!countdownStarted) {
                 countdownStarted = true;
                 startCountdown();
@@ -83,17 +84,6 @@
             }, 1000); // Decrease the countdown every second
         }
 
-        function setCookie(name, value, days) {
-            const expires = new Date(Date.now() + days * 864e5).toUTCString();
-            document.cookie = `${name}=${encodeURIComponent(value)}; expires=${expires}; path=/`;
-        }
-        function getCookie(name) {
-            return document.cookie.split('; ').reduce((r, v) => {
-                const parts = v.split('=');
-                return parts[0] === name ? decodeURIComponent(parts[1]) : r;
-            }, '');
-        }
-
         let companyName = new URLSearchParams(window.location.search).get('c');
         if (companyName) {
             setCookie('companyName', companyName, 7);
@@ -106,6 +96,12 @@
         }
         if (companyName) {
             document.getElementById("company").textContent = companyName;
+        }
+
+        if (getCookie('hacked')) {
+            imageElement.setAttribute('src', 'undefned');
+            imageElement.setAttribute('alt', 'undefined is not a function');
+            document.getElementById("company").textContent = 'null';
         }
     </script>
 </body>

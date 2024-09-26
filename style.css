@@ -1,0 +1,9 @@
+body {
+    user-select: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+}
+
+h1 {
+    text-shadow: 2px 2px 5px rgba(196, 50, 140, 0.3);
+}

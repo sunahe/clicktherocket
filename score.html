@@ -29,20 +29,40 @@
     <div class="container mt-5 text-center">
         <h1>Your Final Score</h1>
         <h2>Clicks: <span id="finalScore">0</span></h2>
-        <p id="descrpition"></p>
-        <a href="index.html" id="playAgainLink" class="btn btn-outline-primary mt-4" role="button" disabled
+        <div id="message" class="alert alert-dark"></div>
+        <a href="index.html" id="playAgainLink" class="btn btn-lg btn-outline-primary mt-4" role="button" disabled
             style="position: absolute; bottom: 20px; left: 50%; transform: translateX(-50%);">
             Play Again
         </a>
     </div>
 
     <script>
-        const score = new URLSearchParams(window.location.search).get('score');
-        document.getElementById("finalScore").textContent = score;
-
         setTimeout(() => {
             document.getElementById('playAgainLink').removeAttribute('disabled');
         }, 500);
+
+        const score = new URLSearchParams(window.location.search).get('score') || 0;
+        document.getElementById("finalScore").textContent = score;
+
+        const scoreNum = parseInt(score, 10);
+        if (!isNaN(scoreNum)) {
+            const msg =
+                scoreNum <= 0 ? 'How did you manage THAT?' :
+                scoreNum == 1 ? 'You should keep clicking that rocket' :
+                scoreNum < 50 ? 'So slow....' :
+                scoreNum < 60 ? 'My grandma clicks faster than that' :
+                scoreNum < 70 ? 'Keep trying' :
+                scoreNum < 80 ? 'You have to feel the rhytm' :
+                scoreNum < 90 ? 'A decent attempt' :
+                scoreNum < 96 ? 'Almost there' :
+                scoreNum < 100 ? 'So close to the record' :
+                scoreNum < 110 ? 'Well done!' :
+                scoreNum < 120 ? 'Phenomenal clicking!!' :
+                scoreNum < 300 ? 'You are a rocket-clicking god!!!' :
+                scoreNum == 300 ? 'How much?' :
+                'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.';
+            document.getElementById('message').textContent = msg;
+        }
     </script>
 </body>
 
